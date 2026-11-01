@@ -30,6 +30,12 @@ def main():
             assert taller.dimensions[k] == bracket.dimensions[k], (k, taller.dimensions)
     assert build_mesh(taller).extents[2] == 120
     report["contextual_edit"] = "PASS"
+    corrected = understand(client, "क्रिएट अ एल शेप मॉडेल विथ लाईक 30 सेंटीमीटर विड्थ, 40 सेंटीमीटर व्हॉट इज दॅट लेंथ अँड नो क्रिएट अ स्क्वेअर ब्लॉक ऍक्च्युली विथ 30 सेंटीमीटर विड्थ अँड 40 सेंटीमीटर लेंथ अँड 3 सेंटीमीटर हाइट.")
+    assert corrected.shape_type == "plate"
+    assert corrected.dimensions["hole_count"] == 0
+    assert build_mesh(corrected).extents.tolist() == [400, 300, 30], corrected
+    export_stl(build_mesh(corrected))
+    report["self_corrected_marathi_solid_block_centimetres"] = "PASS"
     for command, shape in [
         ("Make a rectangular mounting plate 100 mm long, 60 mm wide, thickness 4 mm and four 5 mm holes.","plate"),
         ("Make an open-top box length 100 mm, width 70 mm, height 50 mm, wall thickness 3 mm.","box"),

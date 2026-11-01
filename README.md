@@ -46,6 +46,8 @@ The first displayed bracket is explicitly labelled **Starter design**.
 
 - Bracket: height, width, depth, thickness, hole count and default hole diameter.
 - Plate: length, width, thickness, hole count and default hole diameter.
+  Solid rectangular blocks use this same family with height mapped to thickness
+  and zero holes. Corrected spoken commands use the final requested design.
 - Box: outside length, width, height, and wall/bottom thickness; top is open.
 - Automatic bracket holes are evenly spaced on the upright. Four plate holes
   use corner placement; other counts run along the length.
@@ -88,6 +90,9 @@ and [Cloud secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/d
 `cad_schema.py` validates shape-specific dimensions and hole locations.
 `geometry.py` has predefined constructors only; AI-generated code is never executed.
 `viewer.py` renders the export mesh. `app.py` manages the UI and session state.
+Numeric centimetre/inch tokens are converted to millimetres before inference.
+Sarvam receives a typed JSON schema; malformed responses get one bounded retry.
+Invalid geometry still requires clarification and is never silently repaired.
 
 Audio is held in the active Streamlit session and never saved by the app. Commands
 and recordings are sent to Sarvam when AI generation/transcription is requested.
@@ -106,8 +111,8 @@ Verified locally on 1 November 2026:
 
 | Check | Result |
 |---|---|
-| Offline schema, geometry, STL and UI state tests | 16 pass |
-| GitHub Actions on Linux/Python 3.13, dependency installation and all 16 tests | Pass |
+| Offline schema, geometry, STL, AI response validation and UI state tests | 21 pass |
+| GitHub Actions on Linux/Python 3.13, dependency installation and test suite | Pass |
 | English bracket, plate and box via real Sarvam-105B | Pass |
 | Follow-up height edit preserves other parameters | Pass |
 | Impossible box walls rejected using real API | Pass |
@@ -120,6 +125,7 @@ Verified locally on 1 November 2026:
 | Public Cloud 390 px and 320 px layouts, no horizontal overflow | Pass |
 | Public Cloud English generation and contextual height edit with configured secrets | Pass |
 | Public Cloud microphone → Saaras v4 → CAD using prerecorded Marathi fixture | Pass |
+| Self-corrected mixed Marathi/English block command, 30 × 40 × 3 cm | Pass via real API; 400 × 300 × 30 mm watertight STL |
 
 Synthetic speech is explicitly a test fixture, not a recording of a human user.
 The exported STL is reloaded and checked for watertightness, positive volume,

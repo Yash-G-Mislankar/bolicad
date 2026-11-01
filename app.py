@@ -148,6 +148,7 @@ with left:
                 status.update(label="Model ready", state="complete", expanded=False)
             st.rerun()
         except (ServiceError, ValidationError, ValueError) as exc:
+            status.update(label="Model not changed · review the message below", state="error", expanded=False)
             st.error(validation_message(exc))
             st.caption("No changes applied. The workspace still shows your previous valid model.")
     if not api_key:

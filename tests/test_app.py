@@ -2,11 +2,13 @@
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from streamlit.testing.v1 import AppTest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from ai_service import ServiceError
 
 
 class WorkspaceTests(unittest.TestCase):
@@ -42,6 +44,17 @@ class WorkspaceTests(unittest.TestCase):
         self.button(app, "L-bracket · 80 × 50 × 40 mm").click().run()
         self.assertIn("L-shaped bracket", app.session_state.prompt)
         self.assertEqual(app.session_state.intent, "Create")
+
+    def test_ai_failure_finishes_status_and_preserves_current_model(self):
+        app = self.app()
+        app.text_area[0].set_value("Make a block").run()
+        with patch("ai_service.understand", side_effect=ServiceError("Please clarify the height.")):
+            self.button(app, "Generate Model  →").click().run()
+        self.assertFalse(app.exception)
+        self.assertIn("Please clarify the height", app.error[0].value)
+        self.assertEqual(app.status[0].state, "error")
+        self.assertIn("Model not changed", app.status[0].label)
+        self.assertEqual(app.session_state.spec.shape_type, "bracket")
 
 
 if __name__ == "__main__":
