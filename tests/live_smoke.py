@@ -5,6 +5,7 @@ Run from bolicad: ../.venv/bin/python tests/live_smoke.py
 import base64
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -61,7 +62,7 @@ def main():
     report["marathi_synthetic_voice_roundtrip"] = "PASS"
     report["marathi_transcript"] = transcript
     # Optional local-only fixture for browser microphone capture testing.
-    Path("/private/tmp/bolicad-marathi-command.wav").write_bytes(audio)
+    (Path(tempfile.gettempdir()) / "bolicad-marathi-command.wav").write_bytes(audio)
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

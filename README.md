@@ -107,6 +107,7 @@ Verified locally on 1 November 2026:
 | Real Bulbul Marathi fixture → Saaras v4 → CAD | Pass |
 | Browser microphone capture → real Saaras → CAD, prerecorded Marathi fixture | Pass |
 | Browser dimension editing, invalid edit rollback, STL download | Pass |
+| Browser real text generation, contextual edit, orbit/reset | Pass |
 | 390 px and 320 px layout, no horizontal overflow | Pass |
 | Public Cloud deployment and configured secrets | Pending account access |
 
