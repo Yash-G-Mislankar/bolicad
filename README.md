@@ -5,6 +5,8 @@ three editable parametric solids: L-shaped brackets, rectangular mounting plates
 and open-top boxes. Geometry uses Trimesh and Manifold3D; Plotly displays the same
 triangles exported to STL. All dimensions are millimetres.
 
+Source: [Yash-G-Mislankar/bolicad](https://github.com/Yash-G-Mislankar/bolicad).
+
 ## Run
 
 Requires Python 3.11 or newer (tested with Python 3.13).
@@ -56,7 +58,7 @@ The first displayed bracket is explicitly labelled **Starter design**.
 Publish **the contents of this `bolicad` folder as the repository root**. The
 existing BillSaathi application in the parent folder is a separate project.
 
-1. Create a GitHub repository named `bolicad` and push this folder's contents.
+1. The source is already pushed to **`Yash-G-Mislankar/bolicad`**, branch **`main`**.
 2. At [Streamlit Community Cloud](https://share.streamlit.io), choose **Create app**
    and select that repository, branch `main`, main file **`app.py`**.
 3. In **Advanced settings**, select **Python 3.13**. Add a root-level secret:
