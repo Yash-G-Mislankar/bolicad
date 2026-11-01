@@ -7,6 +7,8 @@ triangles exported to STL. All dimensions are millimetres.
 
 Source: [Yash-G-Mislankar/bolicad](https://github.com/Yash-G-Mislankar/bolicad).
 
+Public app: [BoliCAD](https://bolicad-vzp2laiy7adimfjkudkme5.streamlit.app/).
+
 [Open the prefilled Streamlit deployment form](https://share.streamlit.io/deploy?repository=Yash-G-Mislankar%2Fbolicad&branch=main&mainModule=app.py).
 
 ## Run
@@ -72,8 +74,8 @@ existing BillSaathi application in the parent folder is a separate project.
 4. Deploy, set app visibility to public, and test the generated HTTPS URL.
 
 No extra OS packages, database, Node server, or native CAD installation are needed.
-GitHub/Cloud account access and Cloud secrets must be provided by the account
-owner. **No public deployment has been verified yet.**
+The public app is deployed. Configure `SARVAM_API_KEY` in Cloud secrets to enable
+voice and AI generation; geometry editing and STL export also work without a key.
 
 [Official deployment guide](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy)
 and [Cloud secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
@@ -114,13 +116,16 @@ Verified locally on 1 November 2026:
 | Browser dimension editing, invalid edit rollback, STL download | Pass |
 | Browser real text generation, contextual edit, orbit/reset | Pass |
 | 390 px and 320 px layout, no horizontal overflow | Pass |
-| Public Cloud deployment and configured secrets | Pending account access |
+| Public Cloud load, parameter editing, invalid edit rollback and STL export | Pass |
+| Public Cloud 390 px and 320 px layouts, no horizontal overflow | Pass |
+| Public Cloud English generation and contextual height edit with configured secrets | Pass |
+| Public Cloud microphone → Saaras v4 → CAD using prerecorded Marathi fixture | Pass |
 
 Synthetic speech is explicitly a test fixture, not a recording of a human user.
 The exported STL is reloaded and checked for watertightness, positive volume,
 single-body connectivity, and agreement with preview bounds before download.
-Optional spoken responses are not implemented. Physical microphone permission
-and the final public URL still need verification on the deployment device.
+Optional spoken responses are not implemented. A human user's physical microphone
+and permission prompts still need a manual check on their own device.
 
 Official API references:
 [chat JSON output](https://docs.sarvam.ai/api/token-factory/chat-completions),
