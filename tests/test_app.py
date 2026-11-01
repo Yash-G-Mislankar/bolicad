@@ -48,7 +48,7 @@ class WorkspaceTests(unittest.TestCase):
     def test_ai_failure_finishes_status_and_preserves_current_model(self):
         app = self.app()
         app.text_area[0].set_value("Make a block").run()
-        with patch("ai_service.understand", side_effect=ServiceError("Please clarify the height.")):
+        with patch("ai_service.make_client"), patch("ai_service.understand", side_effect=ServiceError("Please clarify the height.")):
             self.button(app, "Generate Model  →").click().run()
         self.assertFalse(app.exception)
         self.assertIn("Please clarify the height", app.error[0].value)
