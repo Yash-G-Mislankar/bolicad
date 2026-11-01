@@ -1,0 +1,8 @@
+streamlit==1.66.1
+sarvamai==0.1.41
+httpx==0.28.1
+pydantic>=2.11,<3
+numpy>=2.2,<3
+trimesh==4.12.2
+manifold3d==3.5.4
+plotly==6.9.0

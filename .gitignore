@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.wav
+*.stl
+outputs/
+test-results/
+.DS_Store
