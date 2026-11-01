@@ -7,6 +7,8 @@ triangles exported to STL. All dimensions are millimetres.
 
 Source: [Yash-G-Mislankar/bolicad](https://github.com/Yash-G-Mislankar/bolicad).
 
+[Open the prefilled Streamlit deployment form](https://share.streamlit.io/deploy?repository=Yash-G-Mislankar%2Fbolicad&branch=main&mainModule=app.py).
+
 ## Run
 
 Requires Python 3.11 or newer (tested with Python 3.13).
@@ -103,6 +105,7 @@ Verified locally on 1 November 2026:
 | Check | Result |
 |---|---|
 | Offline schema, geometry, STL and UI state tests | 16 pass |
+| GitHub Actions on Linux/Python 3.13, dependency installation and all 16 tests | Pass |
 | English bracket, plate and box via real Sarvam-105B | Pass |
 | Follow-up height edit preserves other parameters | Pass |
 | Impossible box walls rejected using real API | Pass |
